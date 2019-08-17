@@ -4,6 +4,7 @@ import vcfpy
 import os
 import csv
 import time
+import sys
 
 def write_dict(dict_to_dump, csv_file):
     with open(csv_file, 'w') as f:
@@ -40,15 +41,15 @@ def writeVCF(output_vcf, header, records):
         writer.write_record(record)
     
 if __name__ == '__main__':
-    #vcfs = files_in_path('/home/compass/Data/vcfs_test')
-    
-    vcfs = files_in_path('/home/compass/Data/vcfs_compass')
+    #python3 lib/vcf-reader.py /home/compass/Data/vcfs_minos
+    vcfs = files_in_path(sys.argv[1])
+    stats_file = sys.argv[1] + '/stats.csv'
     print(vcfs)
     stats = {}
     print(stats)
     for vcf in vcfs:
-        new_vcf = 'new_' + vcf
+        new_vcf = vcf.split('.')[0] + '_new.vcf' 
         name, count, header, records = readVCF(vcf)
         stats[name] = count
         writeVCF(new_vcf, header, records)
-    write_dict(stats,'/home/compass/Data/vcfs_compass/stats.csv')
+    write_dict(stats,stats_file)
