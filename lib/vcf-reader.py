@@ -30,9 +30,6 @@ def readVCF(input_vcf):
             continue
         new_record.append(record)
         count += 1
-        line = [record.CHROM, record.POS, record.REF]
-        line += [alt.value for alt in record.ALT]
-        line += [call.data.get('GT') or './.' for call in record.calls]
     return (input_vcf, count, header, new_record)
 
 def writeVCF(output_vcf, header, records):
@@ -48,8 +45,12 @@ if __name__ == '__main__':
     stats = {}
     print(stats)
     for vcf in vcfs:
+        start = time.time()
         new_vcf = vcf.split('.')[0] + '_new.vcf' 
         name, count, header, records = readVCF(vcf)
-        stats[name] = count
         writeVCF(new_vcf, header, records)
+        end = time.time()
+        duration = int((end - start) * 1000)
+        stats[name] = {'count': count, 'duration': duration }
+        print('vcf took {0} minutes {1} seconds and {2} miliseconds'.format(duration // 1000 // 60, (duration // 1000 % 60), duration % 1000))
     write_dict(stats,stats_file)
