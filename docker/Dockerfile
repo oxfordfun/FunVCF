@@ -10,6 +10,7 @@ RUN apt-get update && \
 RUN apt install -y \
     apt install libbz2-dev
     apt install liblzma-dev
+    apt install zlib1g-dev
 
 RUN pip3 install pysam
 RUN pip3 install vcfpy
