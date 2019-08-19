@@ -4,7 +4,7 @@ import vcfpy
 import os
 import csv
 import time
-import sys
+import argparse
 from pathlib import Path
 
 def write_dict(dict_to_dump, csv_file):
@@ -39,12 +39,15 @@ def writeVCF(output_vcf, header, records):
         writer.write_record(record)
     
 if __name__ == '__main__':
-    #python3 bin/vcf-reader.py /home/docker/Data/vcfs_tests /home/docker/Data/vcfs_tests_slim
-    in_vcfs = files_in_path(sys.argv[1])
-    print(in_vcfs)
-    out_vcfs_path = Path(sys.argv[2])
-    print(out_vcfs_path)
-    stats_file = sys.argv[2] + '/stats.csv'
+    #usage: python3 bin/vcf-reader.py -i /home/docker/Data/vcfs_tests -o /home/docker/Data/vcfs_tests_slim
+    parser = argparse.ArgumentParser(description="VCF reader")
+    parser.add_argument("-i", dest="input", required=True, help="input folder")
+    parser.add_argument("-o", dest="output", required=True, help="output folder")
+
+    args = parser.parse_args()
+    in_vcfs = files_in_path(args.input)
+    out_vcfs_path = Path(args.output)
+    stats_file = str(out_vcfs_path / 'stats.csv')
     stats = {}
     for vcf in in_vcfs:
         start = time.time()
