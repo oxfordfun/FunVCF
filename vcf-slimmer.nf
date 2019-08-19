@@ -1,15 +1,16 @@
 #! /usr/bin/env nextflow
 
-params.input_folder = "/home/docker/Data/vcfs_tests"
+params.input = "/home/docker/Data/vcfs_tests"
 
-params.output_folder = "/home/docker"
+params.output = "/home/docker/Data/vcfs_tests_output"
 
-vcf_files_channel = Channel.fromPath(params.input_folder)
+vcf_files_channel = Channel.fromPath(params.input)
 
 process process_vcf {
     echo true
+    scratch true
 
-    publishDir "${params.output_folder}", mode: "copy"
+    publishDir "${params.output}", mode: "copy"
 
     tag {vcf_file.getBaseName()}
 
@@ -19,7 +20,7 @@ process process_vcf {
     output:
 
     """
-    vcf-reader.py ${param.input_folder} ${params.output_folder}
+    python3 /home/docker/Code/FunVCF/bin/vcf-reader.py -i ${params.input} -o ${params.output}
     """
 
 }
