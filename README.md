@@ -1,2 +1,2 @@
-# VcfFun
+# FunVcF
 Fun Tools for VCF
