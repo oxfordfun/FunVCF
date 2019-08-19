@@ -5,6 +5,7 @@ import os
 import csv
 import time
 import sys
+from pathlib import Path
 
 def write_dict(dict_to_dump, csv_file):
     with open(csv_file, 'w') as f:
@@ -38,17 +39,21 @@ def writeVCF(output_vcf, header, records):
         writer.write_record(record)
     
 if __name__ == '__main__':
-    #python3 lib/vcf-reader.py /home/compass/Data/vcfs_minos
-    vcfs = files_in_path(sys.argv[1])
-    stats_file = sys.argv[1] + '/stats.csv'
-    print(vcfs)
+    #python3 bin/vcf-reader.py /home/docker/Data/vcfs_tests /home/docker/Data/vcfs_tests_slim
+    in_vcfs = files_in_path(sys.argv[1])
+    print(in_vcfs)
+    out_vcfs_path = Path(sys.argv[2])
+    print(out_vcfs_path)
+    stats_file = sys.argv[2] + '/stats.csv'
     stats = {}
-    print(stats)
-    for vcf in vcfs:
+    for vcf in in_vcfs:
         start = time.time()
-        new_vcf = vcf.split('.')[0] + '_new.vcf' 
+        vcf_file = vcf.split('/')[-1]
+        new_vcf_file = vcf_file.split('.')[0] + '_new.vcf'
+        new_vcf_path = out_vcfs_path /  new_vcf_file
+      
         name, count, header, records = readVCF(vcf)
-        writeVCF(new_vcf, header, records)
+        writeVCF(new_vcf_path, header, records)
         end = time.time()
         duration = int((end - start) * 1000)
         stats[name] = {'count': count, 'duration': duration }
