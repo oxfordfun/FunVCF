@@ -40,9 +40,9 @@ def writeVCF(output_vcf, header, records):
     
 if __name__ == '__main__':
     #To run a batch, provide input directory and output directory
-    #python3 bin/vcf-reader.py -d /home/docker/Data/vcfs_tests -t /home/docker/Data/vcfs_tests_slim
+    #python3 bin/vcf-cutter.py -d /home/docker/Data/vcfs_tests -t /home/docker/Data/vcfs_tests_slim
     #To run a file, give input vcf and output vcf (This can be parallelled with )
-    #python3 bin/vcf-reader.py -i /home/docker/Data/vcfs_tests/SRR8662666.vcf -o /home/docker/Data/vcfs_tests_slim/SRR8662666_new.vcf
+    #python3 bin/vcf-cutter.py -i /home/docker/Data/vcfs_tests/SRR8662666.vcf -o /home/docker/Data/vcfs_tests_slim/SRR8662666_new.vcf
     parser = argparse.ArgumentParser(description="VCF reader")
 
     parser.add_argument("-d", dest="input_directory", required=False, help="input directory")
@@ -72,5 +72,5 @@ if __name__ == '__main__':
         print('Batch run')
         print('python3 -d ~/Data/vcfs_tests -t ~/Data/vcfs_tests_slim')
         print('Single run')
-        print('python3 bin/vcf-reader.py -i ~/Data/vcfs_tests/SRR8662666.vcf -o ~/Data/vcfs_tests_slim/SRR8662666_new.vcf')
+        print('python3 bin/vcf-cutter.py -i ~/Data/vcfs_tests/SRR8662666.vcf -o ~/Data/vcfs_tests_slim/SRR8662666_new.vcf')
         print('===============================================================')

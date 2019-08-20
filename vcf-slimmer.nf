@@ -29,6 +29,6 @@ process process_vcf {
     set val("${vcf_file.getBaseName()}"), file("${(vcf_file.getBaseName())}_new.vcf") into output
 
     """
-    python3 ${SCRIPT}/vcf-cutter.py -i ${vcf_file.getBaseName()}.vcf -o ${vcf_file.getBaseName()}_new.vcf
+    vcf-cutter.py -i ${vcf_file.getBaseName()}.vcf -o ${vcf_file.getBaseName()}_new.vcf
     """
 }
