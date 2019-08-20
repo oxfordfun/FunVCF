@@ -4,7 +4,9 @@ params.input = "/home/docker/Data/vcfs_tests"
 
 params.output = "/home/docker/Data/vcfs_tests_output"
 
-vcf_files_channel = Channel.fromPath(params.input)
+vcf_path = params.input + "/*.vcf"
+
+vcf_files_channel = Channel.fromPath(vcf_path)
 
 process process_vcf {
     echo true
@@ -18,9 +20,9 @@ process process_vcf {
     file vcf_file from vcf_files_channel
 
     output:
+    set val("${vcf_file.getBaseName()}"), file("${(vcf_file.getBaseName())}_new.vcf") into output
 
     """
-    python3 /home/docker/Code/FunVCF/bin/vcf-reader.py -i ${params.input} -o ${params.output}
+    python3 /home/docker/Code/FunVCF/bin/vcf-reader.py -i ${vcf_file.getBaseName()}.vcf -o ${vcf_file.getBaseName()}_new.vcf
     """
-
 }
