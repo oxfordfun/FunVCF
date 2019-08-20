@@ -1,4 +1,8 @@
 #! /usr/bin/env nextflow
+/* 
+nextflow run vcf-slimmer.nf --input /home/docker/Data/vcfs_tests --output /home/docker/Data/vcfs_tests_output
+nextflow run vcf-slimmer.nf --input /home/docker/Data/vcfs_tests --output /home/docker/Data/vcfs_tests_output -profile docker
+*/
 
 params.input = "/home/docker/Data/vcfs_tests"
 
