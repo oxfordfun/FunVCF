@@ -6,11 +6,13 @@ nextflow run vcf-slimmer.nf --input /home/docker/Data/vcfs_tests --output /home/
 nextflow run vcf-slimmer.nf --input /home/docker/Data/vcfs_tests --output /home/docker/Data/vcfs_tests_output -with-singularity /data/images/funvcf-v0.1.0.img
 */
 
-params.input = "/home/docker/Data/vcfs_tests"
+params.input = "/home/docker/Data/vcfs_tests/"
+
+params.pattern = "*.vcf"
 
 params.output = "/home/docker/Data/vcfs_tests_output"
 
-vcf_path = params.input + "/*.vcf"
+vcf_path = params.input + params.pattern
 
 vcf_files_channel = Channel.fromPath(vcf_path)
 
