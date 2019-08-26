@@ -1,5 +1,5 @@
 #! /usr/bin/env nextflow
-/* 
+/*
 nextflow run vcf-slimmer.nf --input /home/docker/Data/vcfs_tests --pattern *.vcf --output /home/docker/Data/vcfs_tests_output
 nextflow run vcf-slimmer.nf --input /home/docker/Data/vcfs_tests --pattern *.vcf --output /home/docker/Data/vcfs_tests_output -profile docker
 nextflow run vcf-slimmer.nf --input /home/docker/Data/vcfs_tests --pattern *.vcf --output /home/docker/Data/vcfs_tests_output -profile singularity
@@ -8,13 +8,36 @@ nextflow run vcf-slimmer.nf --input /home/docker/Data/vcfs_tests --pattern *.vcf
 
 params.input = "/home/docker/Data/vcfs_tests/"
 
-params.pattern = "*.vcf"
+params.pattern = "*.vcf.gz"
 
 params.output = "/home/docker/Data/vcfs_tests_output"
 
 vcf_path = params.input + params.pattern
 
-vcf_files_channel = Channel.fromPath(vcf_path)
+if (params.pattern == "*.vcf.gz"){
+
+gzip_files_channel = Channel.fromPath(vcf_path)
+
+process unzip_vcf {
+
+   tag {gzip_file.getBaseName()}
+
+   input:
+   file gzip_file from gzip_files_channel
+
+   output:
+   set file("${gzip_file.getBaseName()}.vcf") into vcf_files_channel
+
+   """
+   gunzip -c ${gzip_file} > ${gzip_file.getBaseName()}.vcf
+   """
+}}
+
+if (params.pattern == "*.vcf"){
+
+   vcf_files_channel = Channel.fromPath(vcf_path)
+}
+
 
 process process_vcf {
     echo true
