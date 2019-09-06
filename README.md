@@ -1,4 +1,4 @@
-# FunVcF
+# FunVCF
 Fun Tools for VCF
 ## VCF Cutter
 VCF cutter reads a VCF and writes a new VCF which only contains SNV.
