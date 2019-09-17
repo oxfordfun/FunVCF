@@ -18,7 +18,6 @@ nextflow run vcf-python.nf --input data/ --pattern *.vcf --output tests-python -
 ```
 
 ### Run with C++
-```
 #### 1. Install nextflow if not exists
 See [Nextflow Documentation](https://www.nextflow.io/docs/latest/getstarted.html)
 
