@@ -14,7 +14,7 @@ See [Nextflow Documentation](https://www.nextflow.io/docs/latest/getstarted.html
 #### 3. Run tests
 ```bash
 nextflow run vcf-python.nf --input data/ --pattern *.vcf --output tests-python -profile docker
-nextflow run vcf-python.nf --input data/ --pattern *.vcf --output tests-python -with-singularity /home/ubuntu/fan/funvcf-v0.1.0.img
+nextflow run vcf-python.nf --input data/ --pattern *.vcf --output tests-python -with-singularity funvcf-v0.1.0.img
 ```
 
 ### Run with C++
