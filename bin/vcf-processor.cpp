@@ -1,3 +1,8 @@
+/*
+ * Credit to Denis Volk, who wrote this to test C++ alternative to process VCF file.
+ * to compile: g++ vcf-processor.cpp -o vcf-processor
+ * to run: ./vcf-processor < YOUR-VCF-FILE
+ */
 #include <string>
 #include <iostream>
 
