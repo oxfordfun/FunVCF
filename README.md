@@ -4,7 +4,7 @@ Fun Tools for VCF
 VCF cutter reads a VCF and writes a new VCF which only contains SNV.
 
 ### Installation
-#### 1. Get Docker from Docker Hub
+#### 1. Get Docker from Docker Hub (Only needed to test out python version)
 ```bash
    docker pull oxfordmmm/funvcf:v0.1.0
 ```
