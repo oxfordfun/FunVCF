@@ -25,3 +25,12 @@ See [Nextflow Documentation](https://www.nextflow.io/docs/latest/getstarted.html
 ```bash
 nextflow run vcf-cpp.nf --input data/ --pattern *.vcf --output tests-cpp -profile standard
 ```
+
+### Run with Nim
+#### 1. Install nextflow if not exists
+See [Nextflow Documentation](https://www.nextflow.io/docs/latest/getstarted.html)
+
+#### 2. Run tests
+```bash
+nextflow run vcf-nim.nf --input data/ --pattern *.vcf --output tests-nim -profile standard
+```
