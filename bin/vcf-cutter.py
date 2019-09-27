@@ -8,11 +8,17 @@ import argparse
 from pathlib import Path
 
 def write_dict(dict_to_dump, csv_file):
+    '''
+    write dictionary(dict_to_dump) to file(csv_file)
+    '''
     with open(csv_file, 'w') as f:
         w = csv.writer(f)
         w.writerows(dict_to_dump.items())
 
 def files_in_path(path):
+    '''
+    Get a list of vcf files from a given path 
+    '''
     vcfs = []
     for root, directories, files in os.walk(path):
         for file in files:
@@ -21,6 +27,9 @@ def files_in_path(path):
     return vcfs
 
 def readVCF(input_vcf):
+    '''
+    Read a VCF file, return all the header lines and the record of SNVs
+    '''
     reader = vcfpy.Reader.from_path(input_vcf)
     header = reader.header
     new_record = []
@@ -33,16 +42,19 @@ def readVCF(input_vcf):
     return (input_vcf, count, header, new_record)
 
 def writeVCF(output_vcf, header, records):
+    '''
+    Write a VCF file, given the header and records
+    '''
     writer = vcfpy.Writer.from_path(output_vcf, header)
     for record in records:
         writer.write_record(record)
 
     
 if __name__ == '__main__':
-    #To run a batch, provide input directory and output directory
-    #python3 bin/vcf-cutter.py -d /home/docker/Data/vcfs_tests -t /home/docker/Data/vcfs_tests_slim
-    #To run a file, give input vcf and output vcf (This can be parallelled with )
-    #python3 bin/vcf-cutter.py -i /home/docker/Data/vcfs_tests/SRR8662666.vcf -o /home/docker/Data/vcfs_tests_slim/SRR8662666_new.vcf
+    '''
+    python3 -d DIRECTORY-WITH-VCF-FILES -t OUTPUT-DIRECTORY
+    python3 -i VCF-FILE -t OUT-VCF-FILE
+    '''
     parser = argparse.ArgumentParser(description="VCF reader")
 
     parser.add_argument("-d", dest="input_directory", required=False, help="input directory")
