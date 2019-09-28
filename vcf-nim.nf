@@ -1,9 +1,7 @@
 #! /usr/bin/env nextflow
 /*
-nextflow run vcf-slimmer.nf --input /home/docker/Data/vcfs_tests --pattern *.vcf --output /home/docker/Data/vcfs_tests_output
-nextflow run vcf-slimmer.nf --input /home/docker/Data/vcfs_tests --pattern *.vcf --output /home/docker/Data/vcfs_tests_output -profile docker
-nextflow run vcf-slimmer.nf --input /home/docker/Data/vcfs_tests --pattern *.vcf --output /home/docker/Data/vcfs_tests_output -profile singularity
-nextflow run vcf-slimmer.nf --input /home/docker/Data/vcfs_tests --pattern *.vcf --output /home/docker/Data/vcfs_tests_output -with-singularity /data/images/funvcf-v0.1.0.img
+nextflow run vcf-nim.nf --input /home/docker/Data/vcfs_tests --pattern *.vcf --output /home/docker/Data/vcfs_tests_output
+nextflow run vcf-nim.nf --input /home/docker/Data/vcfs_tests --pattern *.vcf.gz --output /home/docker/Data/vcfs_tests_output
 */
 
 params.input = "/home/docker/Data/vcfs_tests/"
