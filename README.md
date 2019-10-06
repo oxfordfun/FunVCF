@@ -1,3 +1,7 @@
+<a href='https://funvcf.readthedocs.io/en/latest/?badge=latest'>
+    <img src='https://readthedocs.org/projects/funvcf/badge/?version=latest' alt='Documentation Status' />
+</a>
+
 # FunVCF
 Fun Tools for VCF
 ## VCF Cutter
