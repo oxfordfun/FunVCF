@@ -3,4 +3,5 @@ work/
 .nextflow/
 .nextflow.log
 .nextflow.log.*
+docs/build/
 
