@@ -52,8 +52,8 @@ def writeVCF(output_vcf, header, records):
     
 if __name__ == '__main__':
     '''
-    python3 -d DIRECTORY-WITH-VCF-FILES -t OUTPUT-DIRECTORY
-    python3 -i VCF-FILE -t OUT-VCF-FILE
+    python3 bin/vcf-cutter.py -d DIRECTORY-WITH-VCF-FILES -t OUTPUT-DIRECTORY
+    python3 bin/vcf-cutter.py -i VCF-FILE -o OUT-VCF-FILE
     '''
     parser = argparse.ArgumentParser(description="VCF reader")
 
@@ -82,7 +82,7 @@ if __name__ == '__main__':
     else:
         print('======================= Examples of Run =======================')
         print('Batch run')
-        print('python3 -d ~/Data/vcfs_tests -t ~/Data/vcfs_tests_slim')
+        print('python3 bin/vcf-cutter.py -d ~/Data/vcfs_tests -t ~/Data/vcfs_tests_slim')
         print('Single run')
         print('python3 bin/vcf-cutter.py -i ~/Data/vcfs_tests/SRR8662666.vcf -o ~/Data/vcfs_tests_slim/SRR8662666_new.vcf')
         print('===============================================================')
