@@ -40,7 +40,7 @@ templates_path = ['_templates']
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
-exclude_patterns = []
+exclude_patterns = ['_build']
 
 
 # -- Options for HTML output -------------------------------------------------
@@ -50,7 +50,7 @@ exclude_patterns = []
 #
 html_theme = 'haiku'
 
-master_doc = 'index'
+master_doc = 'contents'
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
@@ -64,3 +64,10 @@ html_context = {
     "github_version": "master", # Version
     "conf_py_path": "/source/", # Path in the checkout to the docs root
 }
+
+html_static_path = ['_static']
+
+html_additional_pages = {'index': 'index.html'}
+
+def setup(app):
+    app.add_stylesheet('css/custom.css')
