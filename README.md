@@ -4,6 +4,9 @@
 
 # FunVCF
 Fun Tools for VCF
+
+I have a blog written explain the thinking behind this. See [How to make a python script scale on Cloud?](https://yangfan2010.wordpress.com/2019/08/27/how-to-make-a-python-script-scale-on-cloud/)
+
 ## VCF Cutter
 VCF cutter reads a VCF and writes a new VCF which only contains SNV.
 
